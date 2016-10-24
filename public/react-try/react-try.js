@@ -1,4 +1,4 @@
 var $ = require('jquery');
 
 
-if($){alert('jQuery está');}
+if($){alert('jQuery está acaaaaaa');}
