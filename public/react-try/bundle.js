@@ -10224,7 +10224,7 @@ return jQuery;
 var $ = require('jquery');
 
 
-if($){alert('jQuery está acaaaaaa');}
+if($){alert('jQuery estáaaa');}
 
 },{"jquery":1}]},{},[2])
 //# sourceMappingURL=bundle.map.js

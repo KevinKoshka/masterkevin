@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-
+    //Add available site sections here for watch.
     var siteArray = ['react-try'];
 
     grunt.initConfig({
@@ -7,12 +7,22 @@ module.exports = function(grunt) {
 
         //Task options.
 
+        //grunt-concurrent runs many tasks simultaneously.
+        concurrent : {
+            dev : {
+                tasks : ['nodemon', 'watch'],
+                options : {
+                    logConcurrentOutput : true
+                }
+            }
+        },
+        //nodemon lifts the server.
         nodemon : {
             dev : {
                 script : 'app.js'
             }
         },
-
+        //exec runs custom console commands.
         exec : {
             browsify : {
                 cmd : function (_dir) {
@@ -20,15 +30,8 @@ module.exports = function(grunt) {
                 } 
             }
         },
-
-        watch : {
-            'react-try' : {
-                files : ['./public/react-try/react-try.js'],
-                tasks : ['exec:browsify:react-try']
-            }
-        } 
-        
-        /*(function(){
+        //Watches js files by the names in siteArray.
+        watch : (function(){
             var obj = {};
             for(var i = 0; i < siteArray.length; i++){
                 var val = siteArray[i].toString();
@@ -37,14 +40,15 @@ module.exports = function(grunt) {
                     tasks : ['exec:browsify:' + val]
                 };
             }
-            console.log(obj);
-        })()*/
+            return obj;
+        })()
     });
 
     //Task plugin load.
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-concurrent')
     //Task definition: Task name + plugins to run.
-    grunt.registerTask('server', ['nodemon', 'watch']);
+    grunt.registerTask('server', ['concurrent:dev']);
 }

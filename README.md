@@ -12,6 +12,7 @@ MASTERKEVIN REACT PROJECT
 
 - public/ is the static files folder.
 
-- Within every route folder in "public/" Browserify, Exorcist, and Watchify (-g) are used to generate js bundles and their source maps.
-  The following command should run in every route folder within "public/" (for now):
-	+   watchify file.js -o 'exorcist bundle.js.map > bundle.js' -d -v
+- Within every route folder in "public/" Browserify, Exorcist (-g) are used to generate js bundles and their source maps.
+  The following command lifts the server watches the js files and generates bundles if modified:
+	+ grunt server
+
